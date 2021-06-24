@@ -1,0 +1,30 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flake8 = "*"
+jupyter = "*"
+jupyter_contrib_NbExtensions = "*"
+jupyter_nbextensions_configurator = "*"
+nbconvert = "5.6.1"
+jupyterlab = "*"
+kaggle = "*"
+matplotlib = "*"
+numpy = "*"
+pandas = "*"
+pep8 = "*"
+scikit-learn = "*"
+scipy = "*"
+seaborn = "*"
+signate = "*"
+sympy = "*"
+tqdm = "*"
+xgboost = "*"
+Pillow
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
