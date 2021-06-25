@@ -39,10 +39,12 @@ signate \
 sympy \
 xgboost \
 Pillow
-# tqdm \
-# jupyter_contrib_NbExtensions \
-# jupyter_nbextensions_configurator \
 
+RUN pipenv install jupyter_nbextensions_configurator
+RUN pipenv run jupyter nbextensions_configurator enable --user
+
+RUN pipenv install https://github.com/ipython-contrib/jupyter_contrib_nbextensions/tarball/master
+RUN pipenv run jupyter contrib nbextension install --user
 
 RUN pipenv run jupyter notebook --generate-config
 
