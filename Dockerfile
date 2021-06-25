@@ -50,19 +50,31 @@ RUN pipenv run jupyter notebook --generate-config
 
 RUN echo "c.NotebookApp.ip = '0.0.0.0'" >> ~/.jupyter/jupyter_notebook_config.py
 
+
 # 以下、イメージ作成からjupyter起動まで
 
 # イメージ作成
-# docker build . -t hogeimage
+# docker build . -t meri100ht/ubuntu_pyenv-pipenv_jupyter-nbextension
 
-# コンテナ起動、バインドもいれてみた
-# docker run -itd -p 127.0.0.1:8888:8888 -v  C:/Users/hoge/ab:/work --name hogecontainer hogeimage
+# コンテナ起動、バインドもいれてみた(windows)
+# docker run -itd -p 80:8888 -v  C:/Users/hoge/ab:/work --name hogecontainer meri100ht/ubuntu_pyenv-pipenv_jupyter-nbextension
+
+# コンテナ起動、バインドもいれてみた(linux)
+# docker run -itd -p 80:8888 -v ~/kaggle:/work --name hogecontainer meri100ht/ubuntu_pyenv-pipenv_jupyter-nbextension
 
 # docker exec -it hogecontainer bash の後、ここにあるコマンドを実行してjupyterを開く
 
 # コンテナ下でjupyterを開く
 # pipenv run jupyter notebook --port 8888 --allow-root
 
-# これでパッケージインストールしたかった
-# COPY ./Pipfile /
-# RUN pipenv install sync
+
+##################################################################
+
+# EC2側の操作(Amazon Linux 2の場合)
+# sudo yum -y update
+# sudo yum -y install docker
+# sudo service docker start
+# sudo docker pull meri100ht/ubuntu_pyenv-pipenv_jupyter-nbextension:latest
+# sudo docker run -itd -p 80:8888 -v /home/ec2-user/kaggle:/work --name hoge meri100ht/ubuntu_pyenv-pipenv_jupyter-nbextension
+# sudo docker exec -it hoge bash
+# pipenv run jupyter notebook --port 8888 --allow-root
